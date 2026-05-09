@@ -9,8 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SuppliesRouteImport } from './routes/supplies'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ManagersRouteImport } from './routes/managers'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as DisastersRouteImport } from './routes/disasters'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CampsRouteImport } from './routes/camps'
+import { Route as ApprovalsRouteImport } from './routes/approvals'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SuppliesRoute = SuppliesRouteImport.update({
+  id: '/supplies',
+  path: '/supplies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagersRoute = ManagersRouteImport.update({
+  id: '/managers',
+  path: '/managers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisastersRoute = DisastersRouteImport.update({
+  id: '/disasters',
+  path: '/disasters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampsRoute = CampsRouteImport.update({
+  id: '/camps',
+  path: '/camps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApprovalsRoute = ApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +73,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/approvals': typeof ApprovalsRoute
+  '/camps': typeof CampsRoute
+  '/dashboard': typeof DashboardRoute
+  '/disasters': typeof DisastersRoute
+  '/login': typeof LoginRoute
+  '/managers': typeof ManagersRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/approvals': typeof ApprovalsRoute
+  '/camps': typeof CampsRoute
+  '/dashboard': typeof DashboardRoute
+  '/disasters': typeof DisastersRoute
+  '/login': typeof LoginRoute
+  '/managers': typeof ManagersRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alerts': typeof AlertsRoute
+  '/approvals': typeof ApprovalsRoute
+  '/camps': typeof CampsRoute
+  '/dashboard': typeof DashboardRoute
+  '/disasters': typeof DisastersRoute
+  '/login': typeof LoginRoute
+  '/managers': typeof ManagersRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/alerts'
+    | '/approvals'
+    | '/camps'
+    | '/dashboard'
+    | '/disasters'
+    | '/login'
+    | '/managers'
+    | '/reports'
+    | '/supplies'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/alerts'
+    | '/approvals'
+    | '/camps'
+    | '/dashboard'
+    | '/disasters'
+    | '/login'
+    | '/managers'
+    | '/reports'
+    | '/supplies'
+  id:
+    | '__root__'
+    | '/'
+    | '/alerts'
+    | '/approvals'
+    | '/camps'
+    | '/dashboard'
+    | '/disasters'
+    | '/login'
+    | '/managers'
+    | '/reports'
+    | '/supplies'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertsRoute: typeof AlertsRoute
+  ApprovalsRoute: typeof ApprovalsRoute
+  CampsRoute: typeof CampsRoute
+  DashboardRoute: typeof DashboardRoute
+  DisastersRoute: typeof DisastersRoute
+  LoginRoute: typeof LoginRoute
+  ManagersRoute: typeof ManagersRoute
+  ReportsRoute: typeof ReportsRoute
+  SuppliesRoute: typeof SuppliesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/supplies': {
+      id: '/supplies'
+      path: '/supplies'
+      fullPath: '/supplies'
+      preLoaderRoute: typeof SuppliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/managers': {
+      id: '/managers'
+      path: '/managers'
+      fullPath: '/managers'
+      preLoaderRoute: typeof ManagersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disasters': {
+      id: '/disasters'
+      path: '/disasters'
+      fullPath: '/disasters'
+      preLoaderRoute: typeof DisastersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/camps': {
+      id: '/camps'
+      path: '/camps'
+      fullPath: '/camps'
+      preLoaderRoute: typeof CampsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/approvals': {
+      id: '/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof ApprovalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +237,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertsRoute: AlertsRoute,
+  ApprovalsRoute: ApprovalsRoute,
+  CampsRoute: CampsRoute,
+  DashboardRoute: DashboardRoute,
+  DisastersRoute: DisastersRoute,
+  LoginRoute: LoginRoute,
+  ManagersRoute: ManagersRoute,
+  ReportsRoute: ReportsRoute,
+  SuppliesRoute: SuppliesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
