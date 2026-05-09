@@ -15,13 +15,16 @@ function Login() {
   const [u, setU] = useState("");
   const [p, setP] = useState("");
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const submit = (e?: React.FormEvent) => {
+    e?.preventDefault();
     if (login(u, p)) {
       toast.success("Welcome back, Admin");
-      navigate({ to: "/dashboard" });
+      // Use full reload so dashboard sees the localStorage flag immediately
+      window.location.href = "/dashboard";
     } else {
-      toast.error("Invalid credentials");
+      toast.error("Invalid credentials", {
+        description: `Use Admin / Admin123!`,
+      });
     }
   };
 
@@ -52,7 +55,7 @@ function Login() {
               <Label htmlFor="p">Password</Label>
               <Input id="p" type="password" value={p} onChange={(e) => setP(e.target.value)} placeholder="••••••••" />
             </div>
-            <Button type="submit" className="w-full" size="lg">Sign in</Button>
+            <Button type="submit" className="w-full" size="lg" onClick={() => submit()}>Sign in</Button>
           </form>
 
           <p className="text-[11px] text-muted-foreground mt-6 text-center">
