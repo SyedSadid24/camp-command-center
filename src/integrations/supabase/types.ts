@@ -14,7 +14,237 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      accounts: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          role: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          role: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          role?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      alerts: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          severity: string
+          target_audience: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          severity?: string
+          target_audience?: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          severity?: string
+          target_audience?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      camp_managers: {
+        Row: {
+          assigned_camp: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          assigned_camp?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          assigned_camp?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
+      camps: {
+        Row: {
+          capacity: number
+          created_at: string
+          current_occupancy: number
+          disaster_type: string | null
+          id: string
+          location: string
+          manager_id: string | null
+          name: string
+          status: string
+        }
+        Insert: {
+          capacity?: number
+          created_at?: string
+          current_occupancy?: number
+          disaster_type?: string | null
+          id?: string
+          location: string
+          manager_id?: string | null
+          name: string
+          status?: string
+        }
+        Update: {
+          capacity?: number
+          created_at?: string
+          current_occupancy?: number
+          disaster_type?: string | null
+          id?: string
+          location?: string
+          manager_id?: string | null
+          name?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "camps_manager_id_fkey"
+            columns: ["manager_id"]
+            isOneToOne: false
+            referencedRelation: "camp_managers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      disaster_types: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          severity: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          severity?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          severity?: string
+        }
+        Relationships: []
+      }
+      distributions: {
+        Row: {
+          camp_id: string | null
+          distributed_at: string
+          id: string
+          item_name: string
+          notes: string | null
+          quantity: number
+          recipient: string | null
+        }
+        Insert: {
+          camp_id?: string | null
+          distributed_at?: string
+          id?: string
+          item_name: string
+          notes?: string | null
+          quantity?: number
+          recipient?: string | null
+        }
+        Update: {
+          camp_id?: string | null
+          distributed_at?: string
+          id?: string
+          item_name?: string
+          notes?: string | null
+          quantity?: number
+          recipient?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributions_camp_id_fkey"
+            columns: ["camp_id"]
+            isOneToOne: false
+            referencedRelation: "camps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      supplies: {
+        Row: {
+          camp_id: string | null
+          category: string
+          id: string
+          item_name: string
+          quantity: number
+          threshold: number
+          unit: string
+          updated_at: string
+        }
+        Insert: {
+          camp_id?: string | null
+          category?: string
+          id?: string
+          item_name: string
+          quantity?: number
+          threshold?: number
+          unit?: string
+          updated_at?: string
+        }
+        Update: {
+          camp_id?: string | null
+          category?: string
+          id?: string
+          item_name?: string
+          quantity?: number
+          threshold?: number
+          unit?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "supplies_camp_id_fkey"
+            columns: ["camp_id"]
+            isOneToOne: false
+            referencedRelation: "camps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
