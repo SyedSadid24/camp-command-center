@@ -10,7 +10,7 @@ interface AuthCtx {
   logout: () => void;
 }
 
-const Ctx = createContext<AuthCtx>({ isAuthed: false, login: () => false, logout: () => {} });
+const Ctx = createContext<AuthCtx | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthed, setIsAuthed] = useState(false);
@@ -22,19 +22,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = (u: string, p: string) => {
-    if (u === ADMIN_USER && p === ADMIN_PASS) {
-      localStorage.setItem(KEY, "1");
+    const user = (u ?? "").trim();
+    const pass = p ?? "";
+    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      try { localStorage.setItem(KEY, "1"); } catch {}
       setIsAuthed(true);
       return true;
     }
     return false;
   };
   const logout = () => {
-    localStorage.removeItem(KEY);
+    try { localStorage.removeItem(KEY); } catch {}
     setIsAuthed(false);
   };
 
   return <Ctx.Provider value={{ isAuthed, login, logout }}>{children}</Ctx.Provider>;
 }
 
-export const useAuth = () => useContext(Ctx);
+export const useAuth = (): AuthCtx => {
+  const ctx = useContext(Ctx);
+  if (ctx) return ctx;
+  // Fallback so the form still works even if provider isn't mounted yet
+  return {
+    isAuthed: false,
+    login: (u, p) => {
+      if ((u ?? "").trim() === ADMIN_USER && (p ?? "") === ADMIN_PASS) {
+        try { localStorage.setItem(KEY, "1"); } catch {}
+        return true;
+      }
+      return false;
+    },
+    logout: () => { try { localStorage.removeItem(KEY); } catch {} },
+  };
+};
