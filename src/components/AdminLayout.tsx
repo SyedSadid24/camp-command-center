@@ -8,6 +8,7 @@ import {
   Package,
   Megaphone,
   FileText,
+  MessageSquare,
   LogOut,
   ShieldAlert,
 } from "lucide-react";
