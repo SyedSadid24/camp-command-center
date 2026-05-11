@@ -15,6 +15,7 @@ import { Route as ManagersRouteImport } from './routes/managers'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DisastersRouteImport } from './routes/disasters'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as CampsRouteImport } from './routes/camps'
 import { Route as ApprovalsRouteImport } from './routes/approvals'
 import { Route as AlertsRouteImport } from './routes/alerts'
@@ -50,6 +51,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampsRoute = CampsRouteImport.update({
   id: '/camps',
   path: '/camps',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/alerts': typeof AlertsRoute
   '/approvals': typeof ApprovalsRoute
   '/camps': typeof CampsRoute
+  '/chat': typeof ChatRoute
   '/dashboard': typeof DashboardRoute
   '/disasters': typeof DisastersRoute
   '/login': typeof LoginRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/alerts': typeof AlertsRoute
   '/approvals': typeof ApprovalsRoute
   '/camps': typeof CampsRoute
+  '/chat': typeof ChatRoute
   '/dashboard': typeof DashboardRoute
   '/disasters': typeof DisastersRoute
   '/login': typeof LoginRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/alerts': typeof AlertsRoute
   '/approvals': typeof ApprovalsRoute
   '/camps': typeof CampsRoute
+  '/chat': typeof ChatRoute
   '/dashboard': typeof DashboardRoute
   '/disasters': typeof DisastersRoute
   '/login': typeof LoginRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/approvals'
     | '/camps'
+    | '/chat'
     | '/dashboard'
     | '/disasters'
     | '/login'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/approvals'
     | '/camps'
+    | '/chat'
     | '/dashboard'
     | '/disasters'
     | '/login'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/alerts'
     | '/approvals'
     | '/camps'
+    | '/chat'
     | '/dashboard'
     | '/disasters'
     | '/login'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AlertsRoute: typeof AlertsRoute
   ApprovalsRoute: typeof ApprovalsRoute
   CampsRoute: typeof CampsRoute
+  ChatRoute: typeof ChatRoute
   DashboardRoute: typeof DashboardRoute
   DisastersRoute: typeof DisastersRoute
   LoginRoute: typeof LoginRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/camps': {
       id: '/camps'
       path: '/camps'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlertsRoute: AlertsRoute,
   ApprovalsRoute: ApprovalsRoute,
   CampsRoute: CampsRoute,
+  ChatRoute: ChatRoute,
   DashboardRoute: DashboardRoute,
   DisastersRoute: DisastersRoute,
   LoginRoute: LoginRoute,
