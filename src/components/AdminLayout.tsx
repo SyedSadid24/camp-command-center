@@ -23,6 +23,7 @@ const nav = [
   { to: "/camps", label: "Camp Locations", icon: Tent },
   { to: "/supplies", label: "Supplies Stock", icon: Package },
   { to: "/alerts", label: "Alerts & Announcements", icon: Megaphone },
+  { to: "/chat", label: "Team Chat", icon: MessageSquare },
   { to: "/reports", label: "Reports", icon: FileText },
 ];
 
