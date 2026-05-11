@@ -204,6 +204,30 @@ export type Database = {
           },
         ]
       }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          sender_name: string
+          sender_role: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          sender_name: string
+          sender_role?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          sender_name?: string
+          sender_role?: string
+        }
+        Relationships: []
+      }
       supplies: {
         Row: {
           camp_id: string | null
